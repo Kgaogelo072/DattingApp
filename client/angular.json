@@ -62,8 +62,8 @@
             "development": {
               "buildTarget": "client:build:development",
               "ssl": true,
-              "sslKey": "./ssl/localhost.key",
-              "sslCert": "./ssl/localhost.crt"
+              "sslKey": "./ssl/localhost-key.pem",
+              "sslCert": "./ssl/localhost.pem"
             }
           },
           "defaultConfiguration": "development"
