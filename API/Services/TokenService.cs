@@ -13,8 +13,11 @@ public class TokenService(IConfiguration config) : ITokenService
     public string CreateToken(AppUser user)
     {
         var tokenKey = config["TokenKey"] ?? throw new Exception("Cannot access tokeKey from appsettings");
+
         if(tokenKey.Length < 64) throw new Exception("Your tokeKey needs to be longer");
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
+
         var claims = new List<Claim> 
         {
             new (ClaimTypes.NameIdentifier, user.UserName),
@@ -30,6 +33,7 @@ public class TokenService(IConfiguration config) : ITokenService
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
+        
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
         return tokenHandler.WriteToken(token);
