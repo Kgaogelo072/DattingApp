@@ -14,7 +14,8 @@ export class RegisterComponent {
   private accountService = inject(AccountService);
   private toastr = inject(ToastrService);
   cancelRegister = output<boolean>();
-  model: any = {}
+  showPassword = false;
+  model: any = {};
 
   register() {
     this.accountService.register(this.model).subscribe({
@@ -24,6 +25,10 @@ export class RegisterComponent {
       },
       error: error => this.toastr.error(error.error)
     })
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   cancel() {
