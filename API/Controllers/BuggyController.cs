@@ -26,6 +26,6 @@ public class BuggyController : BaseApiController
     [HttpGet("bad-request")]
     public IActionResult GetBadRequest()
     {       
-         return BadRequest("This is a bad request");
+         throw new Exception("This is a bad request");
     }
 }
